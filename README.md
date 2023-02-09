@@ -54,7 +54,7 @@ pipeline {
       steps {
                 script {
                         withPythonEnv('python3'){
-                      sh 'pip install psycopg2'
+                      sh 'pip install pyodbc'
                       sh './job.sh'
                     }
                 }
