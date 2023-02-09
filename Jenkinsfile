@@ -2,18 +2,14 @@ pipeline {
 
   agent any
   stages {
-  stage('Cloning Git') {
-      steps {
-        git 'https://github.com/balendrapratap1212/auto-postgres-deployment.git'
-      }
-    }
     stage('Run Script') {
       steps {
                 script {
 
                     echo "Balendra"
                     sh "python3 --version"
-                    sh 'pip install psycopg2'
+                    sh './job.sh'
+                    
 
                     }
                 }
