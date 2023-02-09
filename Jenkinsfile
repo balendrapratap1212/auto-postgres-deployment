@@ -4,7 +4,7 @@ pipeline {
   stages {
   stage('Cloning Git') {
       steps {
-        git 'https://github.com/mustafanw/auto-postgres-deployment.git'
+        git 'https://github.com/balendrapratap1212/auto-postgres-deployment.git'
       }
     }
     stage('Run Script') {
