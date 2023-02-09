@@ -13,6 +13,7 @@ pipeline {
 
                     echo "Balendra"
                     sh "python3 --version"
+                    sh 'pip install psycopg2'
 
                     }
                 }
