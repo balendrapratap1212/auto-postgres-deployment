@@ -12,6 +12,7 @@ pipeline {
                 script {
 
                     echo "Balendra"
+                    sh "python3 --version"
 
                     }
                 }
