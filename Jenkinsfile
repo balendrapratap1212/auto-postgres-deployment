@@ -10,10 +10,8 @@ pipeline {
     stage('Run Script') {
       steps {
                 script {
-                        withPythonEnv('python3'){
-                      sh 'pip install psycopg2'
-                      sh './job.sh'
 
+                    echo "Balendra"
 
                     }
                 }
