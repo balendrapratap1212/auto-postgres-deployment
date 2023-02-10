@@ -19,15 +19,18 @@ def execute_query(path, service, version):
     failed_queries=''
     conn = pyodbc.connect( host=hostname, user=username, password=password, dbname=database )
     cur = conn.cursor()
+    print(cur)
     file = open(path,'r')
     data = file.read()
     if data:
         query_data = data.replace("\n","")
         queries = query_data.split(";")
+        print(query)
         queries.pop()
         for query in queries:
             try:
                 cur.execute(query)
+                print('query executed')
                 conn.commit()
             except Exception as e:
                 failed_queries = failed_queries + str(e)+"\n"
@@ -58,7 +61,8 @@ def run_base_script(services) :
                 data, fail_queries_ddl=execute_query(ddl_path,service, version)
                 data, fail_queries_dml=execute_query(dml_path,service, version)
                 failed_queries = fail_queries_ddl+fail_queries_dml
-
+                print(failed_queries)
+                
                 logs = logs + "Successfully Executed base script for " + service + " version " + version+ " at " + str(datetime.now())+"\n"
                 with open(sprint_delta_path, 'w') as original: original.truncate(0)
             except Exception as e:
@@ -68,7 +72,7 @@ def run_base_script(services) :
                 continue
         # CONFIG.set("EXECUTE_SCRIPTS","services","")
         with open(CONFIG_FILE, 'w') as original: CONFIG.write(original)
-        add_logs(logs, failed_queries)
+        # add_logs(logs, failed_queries)
         response = "Successfully executed base scripts" if error_flag==1 else "Partially executed base scripts"
     except Exception as e:
         print(f'Line no 73: {e}')
