@@ -30,6 +30,8 @@ def execute_query(path, service, version):
         for query in queries:
             try:
                 cur.execute(query)
+                records = cur.fetchall()
+                print(records)
                 print('query executed')
                 conn.commit()
             except Exception as e:
@@ -62,7 +64,7 @@ def run_base_script(services) :
                 data, fail_queries_dml=execute_query(dml_path,service, version)
                 failed_queries = fail_queries_ddl+fail_queries_dml
                 print(failed_queries)
-                
+
                 logs = logs + "Successfully Executed base script for " + service + " version " + version+ " at " + str(datetime.now())+"\n"
                 with open(sprint_delta_path, 'w') as original: original.truncate(0)
             except Exception as e:
