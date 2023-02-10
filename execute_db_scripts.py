@@ -1,5 +1,5 @@
 import os
-import pyodbc
+import psycopg2
 import configparser
 import json
 from datetime import datetime
@@ -16,7 +16,7 @@ database = CONFIG.get("DATABASE_CONFIGS","database")
 
 def execute_query(path, service, version):
     failed_queries=''
-    conn = pyodbc.connect( host=hostname, user=username, password=password, dbname=database )
+    conn = psycopg2.connect( host=hostname, user=username, password=password, dbname=database )
     cur = conn.cursor()
     file = open(path,'r')
     data = file.read()
