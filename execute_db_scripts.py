@@ -29,7 +29,7 @@ def execute_query(path, service, version):
         queries.pop()
         for query in queries:
             try:
-                cur.execute(query)
+                cur.execute('select * from dbo.Course')
                 records = cur.fetchall()
                 print(records)
                 print('query executed')
