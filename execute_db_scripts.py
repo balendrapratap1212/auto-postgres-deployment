@@ -1,5 +1,4 @@
 import os
-//import psycopg2
 import pyodbc
 import pandas
 import configparser
